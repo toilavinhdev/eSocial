@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Http;
 
 namespace eSocial.Shared.Services;
 
-public abstract class BaseService(IHttpContextAccessor httpContextAccessor)
+public interface IBaseService
 {
-    protected UserClaimValue? GetUserClaimValue()
+    UserClaimValue? GetUserClaimValue();
+}
+
+public class BaseService(IHttpContextAccessor httpContextAccessor) : IBaseService
+{
+    public UserClaimValue? GetUserClaimValue()
     {
         var stringValue = httpContextAccessor.HttpContext?.Request.Headers
             .FirstOrDefault(x => x.Key == "Authorization").Value.ToString();

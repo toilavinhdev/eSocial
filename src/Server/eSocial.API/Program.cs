@@ -27,6 +27,7 @@ app.UseDefaultExceptionHandler();
 app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseSwaggerDocument();
 app.UseHttpsRedirection();
+app.UsePhysicalStaticFiles(appSettings.StaticFileConfig);
 app.MapDefinedEndpoints();
 
 app.MapGet("Ping", () => "Pong");
