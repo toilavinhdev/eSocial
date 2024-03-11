@@ -1,8 +1,52 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FBF91510-A197-44B3-8FF3-0FA88A90C056}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSocial.API", "src\Server\eSocial.API\eSocial.API.csproj", "{645AE9CE-318A-4252-8056-F049B308DC4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSocial.Application", "src\Server\eSocial.Application\eSocial.Application.csproj", "{539A1922-22C0-4D3B-A16F-7E1D52680892}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSocial.Domain", "src\Server\eSocial.Domain\eSocial.Domain.csproj", "{15257863-E953-458E-88BF-843E0660EA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSocial.Infrastructure", "src\Server\eSocial.Infrastructure\eSocial.Infrastructure.csproj", "{C000A255-E513-4A2D-B736-F0052CE20D0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eSocial.Shared", "src\Server\eSocial.Shared\eSocial.Shared.csproj", "{0DC91AAD-A4CD-4419-A0C0-A017E80D2DBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181} = {FBF91510-A197-44B3-8FF3-0FA88A90C056}
+		{645AE9CE-318A-4252-8056-F049B308DC4A} = {5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181}
+		{539A1922-22C0-4D3B-A16F-7E1D52680892} = {5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181}
+		{15257863-E953-458E-88BF-843E0660EA33} = {5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181}
+		{C000A255-E513-4A2D-B736-F0052CE20D0A} = {5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181}
+		{0DC91AAD-A4CD-4419-A0C0-A017E80D2DBB} = {5A8B6DA6-BA6E-4E3B-BC4E-CE2A3D920181}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{645AE9CE-318A-4252-8056-F049B308DC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{645AE9CE-318A-4252-8056-F049B308DC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{645AE9CE-318A-4252-8056-F049B308DC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{645AE9CE-318A-4252-8056-F049B308DC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539A1922-22C0-4D3B-A16F-7E1D52680892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539A1922-22C0-4D3B-A16F-7E1D52680892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539A1922-22C0-4D3B-A16F-7E1D52680892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539A1922-22C0-4D3B-A16F-7E1D52680892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15257863-E953-458E-88BF-843E0660EA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15257863-E953-458E-88BF-843E0660EA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15257863-E953-458E-88BF-843E0660EA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15257863-E953-458E-88BF-843E0660EA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C000A255-E513-4A2D-B736-F0052CE20D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C000A255-E513-4A2D-B736-F0052CE20D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C000A255-E513-4A2D-B736-F0052CE20D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C000A255-E513-4A2D-B736-F0052CE20D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC91AAD-A4CD-4419-A0C0-A017E80D2DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC91AAD-A4CD-4419-A0C0-A017E80D2DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC91AAD-A4CD-4419-A0C0-A017E80D2DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC91AAD-A4CD-4419-A0C0-A017E80D2DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
