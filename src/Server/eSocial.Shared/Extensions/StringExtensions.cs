@@ -10,10 +10,7 @@ public static class StringExtensions
         if (string.IsNullOrEmpty(input)) return default!;
         var hashed = SHA256.HashData(Encoding.UTF8.GetBytes(input));
         var stringBuilder = new StringBuilder();
-        foreach (var byteCode in hashed)
-        {
-            stringBuilder.Append(byteCode.ToString("X2"));
-        }
+        foreach (var byteCode in hashed) stringBuilder.Append(byteCode.ToString("X2"));
         return stringBuilder.ToString();
     }
 }

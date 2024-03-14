@@ -1,6 +1,6 @@
 using eSocial.Application.Contracts;
-using eSocial.Infrastructure.Mongo;
 using eSocial.Infrastructure.Services;
+using eSocial.Shared.Mongo;
 using eSocial.Shared.Services;
 using Microsoft.Extensions.DependencyInjection;
 

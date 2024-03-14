@@ -1,9 +1,9 @@
 ﻿using System.Security.Claims;
 using eSocial.Application.Contracts;
 using eSocial.Domain.UserAggregate;
-using eSocial.Infrastructure.Mongo;
 using eSocial.Shared.Exceptions;
 using eSocial.Shared.Extensions;
+using eSocial.Shared.Mongo;
 using eSocial.Shared.Security;
 using eSocial.Shared.Services;
 using eSocial.Shared.ValueObjects;

@@ -1,4 +1,3 @@
-using eSocial.Shared.ValueObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
@@ -17,4 +16,11 @@ public static class StaticFileExtensions
         });
         return app;
     }
+}
+
+public class StaticFileConfig
+{
+    public string Location { get; set; } = default!;
+
+    public string? External { get; set; }
 }

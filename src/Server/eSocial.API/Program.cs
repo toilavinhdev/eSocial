@@ -13,14 +13,15 @@ var services = builder.Services;
 services.AddCors();
 services.AddJWTBearerAuth(appSettings.JwtConfig);
 services.AddAuthorization();
-services.AddDefinedEndpoints<Program>();
+services.AddEndpointDefinitions<Program>();
 services.AddSwaggerDocument();
 services.AddHttpContextAccessor();
-services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssembly(AssemblyReference.Assembly);
-    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
-});
+services.AddMediatR(
+    cfg =>
+    {
+        cfg.RegisterServicesFromAssembly(AssemblyReference.Assembly);
+        cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+    });
 services.AddValidatorsFromAssembly(AssemblyReference.Assembly);
 services.AddAutoMapper(AssemblyReference.Assembly);
 services.AddServiceCollections();
@@ -33,7 +34,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UsePhysicalStaticFiles(appSettings.StaticFileConfig);
-app.MapDefinedEndpoints();
+app.MapEndpointDefinitions();
 
 app.MapGet("Ping", () => "Pong");
 

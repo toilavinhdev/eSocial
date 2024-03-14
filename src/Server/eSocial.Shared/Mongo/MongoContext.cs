@@ -4,7 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Events;
 
-namespace eSocial.Infrastructure.Mongo;
+namespace eSocial.Shared.Mongo;
 
 public interface IMongoContext
 {
@@ -22,7 +22,7 @@ public class MongoContext : IMongoContext
         {
             builder.Subscribe<CommandStartedEvent>(e =>
             {
-                logger.LogInformation($"Executed mongo driver command {e.CommandName}: {@e.Command.ToJson()}");
+                logger.LogInformation($"Mongo driver execute command {e.CommandName}: {@e.Command.ToJson()}");
             });
         };
         var client = new MongoClient(settings);

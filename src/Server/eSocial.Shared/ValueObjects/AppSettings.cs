@@ -1,3 +1,5 @@
+using eSocial.Shared.Extensions;
+using eSocial.Shared.Mongo;
 using eSocial.Shared.Security;
 
 namespace eSocial.Shared.ValueObjects;
@@ -12,18 +14,3 @@ public class AppSettings
     
     public JwtConfig JwtConfig { get; set; } = default!;
 }
-
-public class StaticFileConfig
-{
-    public string Location { get; set; } = default!;
-
-    public string? External { get; set; }
-}
-
-public class MongoConfig
-{
-    public string ConnectionString { get; set; } = default!;
-
-    public string DatabaseName { get; set; } = default!;
-}
-

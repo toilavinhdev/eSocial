@@ -8,7 +8,7 @@ namespace eSocial.Shared.Extensions;
 
 public static class EndpointExtensions
 {
-    public static IServiceCollection AddDefinedEndpoints<TAssembly>(this IServiceCollection services)
+    public static IServiceCollection AddEndpointDefinitions<TAssembly>(this IServiceCollection services)
     {
         var serviceDescriptors = typeof(TAssembly).Assembly
             .DefinedTypes
@@ -21,7 +21,7 @@ public static class EndpointExtensions
         return services;
     }
     
-    public static WebApplication MapDefinedEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
+    public static WebApplication MapEndpointDefinitions(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
     {
         var endpoints = app.Services
             .GetRequiredService<IEnumerable<IEndpoint>>();

@@ -1,6 +1,6 @@
 using eSocial.Application.Contracts;
 using eSocial.Domain.FileAggregate;
-using eSocial.Infrastructure.Mongo;
+using eSocial.Shared.Mongo;
 using eSocial.Shared.Services;
 using eSocial.Shared.ValueObjects;
 using Microsoft.AspNetCore.Http;
