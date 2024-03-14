@@ -8,7 +8,7 @@ namespace eSocial.Infrastructure.Mongo;
 
 public interface IMongoContext
 {
-    IMongoCollection<T> Collection<T>();
+    IMongoCollection<T> Collection<T>() where T : Document;
 }
 
 public class MongoContext : IMongoContext
@@ -29,5 +29,5 @@ public class MongoContext : IMongoContext
         _database = client.GetDatabase(appSettings.MongoConfig.DatabaseName);
     }
 
-    public IMongoCollection<T> Collection<T>() => _database.GetCollection<T>(typeof(T).Name);
+    public IMongoCollection<T> Collection<T>() where T : Document => _database.GetCollection<T>(typeof(T).Name);
 }

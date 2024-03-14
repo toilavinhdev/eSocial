@@ -10,7 +10,7 @@ public abstract class Document
     public string Id { get; set; } = default!;
 }
 
-public abstract class TrackingDocument
+public abstract class TrackingDocument : Document
 {
     public DateTimeOffset CreatedAt { get; set; }
 
