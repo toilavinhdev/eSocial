@@ -2,7 +2,7 @@ using eSocial.Shared.Exceptions;
 using FluentValidation;
 using MediatR;
 
-namespace eSocial.Application.Behaviors;
+namespace eSocial.Shared.Mediator;
 
 public class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>

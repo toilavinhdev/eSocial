@@ -13,6 +13,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IMongoContext, MongoContext>();
         services.AddTransient<IBaseService, BaseService>();
         services.AddTransient<IStorageService, StorageService>();
+        services.AddScoped<IUserService, UserService>();
         return services;
     }
 }

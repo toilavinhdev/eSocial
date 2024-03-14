@@ -3,7 +3,7 @@ using eSocial.Shared.ValueObjects;
 
 namespace eSocial.Shared.Exceptions;
 
-public class DocumentNotFoundException<T>(string? parameter) 
+public class DocumentNotFoundException<T>(string? parameter = null) 
     : BadRequestException($"Document ${typeof(T).Name} ${parameter} was not found!") where T : Document
 {
     public static void ThrowIfNotFound([NotNull] object? obj, string? parameter = null)

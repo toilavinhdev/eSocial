@@ -1,3 +1,5 @@
+using eSocial.Shared.Security;
+
 namespace eSocial.Shared.ValueObjects;
 
 public class AppSettings
@@ -7,6 +9,8 @@ public class AppSettings
     public StaticFileConfig StaticFileConfig { get; set; } = default!;
 
     public MongoConfig MongoConfig { get; set; } = default!;
+    
+    public JwtConfig JwtConfig { get; set; } = default!;
 }
 
 public class StaticFileConfig
@@ -22,3 +26,4 @@ public class MongoConfig
 
     public string DatabaseName { get; set; } = default!;
 }
+

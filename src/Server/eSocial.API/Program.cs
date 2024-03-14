@@ -1,7 +1,8 @@
 using eSocial.Application;
-using eSocial.Application.Behaviors;
 using eSocial.Infrastructure;
 using eSocial.Shared.Extensions;
+using eSocial.Shared.Mediator;
+using eSocial.Shared.Security;
 using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.SetupSerilog();
 
 var services = builder.Services;
 services.AddCors();
+services.AddJWTBearerAuth(appSettings.JwtConfig);
+services.AddAuthorization();
 services.AddDefinedEndpoints<Program>();
 services.AddSwaggerDocument();
 services.AddHttpContextAccessor();
@@ -26,6 +29,8 @@ var app = builder.Build();
 app.UseDefaultExceptionHandler();
 app.UseCors(b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseSwaggerDocument();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UsePhysicalStaticFiles(appSettings.StaticFileConfig);
 app.MapDefinedEndpoints();
