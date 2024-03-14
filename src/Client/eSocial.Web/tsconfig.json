@@ -24,7 +24,9 @@
       "dom"
     ],
     "paths": {
-      "@app-core/*": ["./src/core/*"]
+      "@app-core/*": ["./src/core/*"],
+      "@app-features/*": ["./src/features/*"],
+      "@app-shared/*": ["./src/shared/*"],
     }
   },
   "angularCompilerOptions": {

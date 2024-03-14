@@ -1,0 +1,19 @@
+<p>sign-in works!</p>
+<form [formGroup]="form">
+  <input nz-input formControlName="email"/>
+  <nz-input-group [nzSuffix]="suffixTemplate">
+    <input
+      [type]="passwordVisible ? 'text' : 'password'"
+      nz-input
+      formControlName="password"
+    />
+  </nz-input-group>
+  <ng-template #suffixTemplate>
+      <span
+        nz-icon
+        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"
+      ></span>
+  </ng-template>
+  <button nz-button (click)="onSubmit()" [disabled]="form.invalid">Đăng nhập</button>
+</form>

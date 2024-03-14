@@ -16,6 +16,7 @@ import { accessTokenInterceptor } from '@app-core/interceptors';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { UserEffects, userReducer } from '@app-shared/store/user';
 
 registerLocaleData(en);
 
@@ -26,8 +27,10 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(FormsModule),
     provideAnimationsAsync(),
     provideHttpClient(withInterceptors([accessTokenInterceptor])),
-    provideStore(),
-    provideEffects(),
+    provideStore({
+      feature_user: userReducer,
+    }),
+    provideEffects([UserEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
