@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/* Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Fontawesome */
+@import url(assets/fontawesome/css/all.css);
+/* Font Family */
+@import url(assets/fonts/font-inter.css);
+
+* {
+  font-family: "Inter", Roboto, sans-serif;
+}
