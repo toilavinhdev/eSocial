@@ -1,6 +1,6 @@
 ﻿namespace eSocial.Shared.Security;
 
-public class JwtConfig
+public class JWTConfig
 {
     public string TokenSingingKey { get; set; } = default!;
     

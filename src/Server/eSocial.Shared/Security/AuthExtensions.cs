@@ -8,7 +8,7 @@ namespace eSocial.Shared.Security;
 public static class AuthExtensions
 {
     public static IServiceCollection AddJWTBearerAuth(this IServiceCollection services, 
-                                                      JwtConfig config, 
+                                                      JWTConfig config, 
                                                       Action<JwtBearerOptions>? jwtOptions = null)
     {
         services

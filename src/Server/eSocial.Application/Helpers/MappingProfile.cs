@@ -12,5 +12,8 @@ public class MappingProfile : Profile
         // User
         CreateMap<CreateUserCommand, User>();
         CreateMap<User, GetMeResponse>();
+        
+        // Friend Request
+        CreateMap<CreateFriendRequestCommand, FriendRequest>();
     }
 }

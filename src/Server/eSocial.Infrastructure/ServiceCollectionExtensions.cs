@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IBaseService, BaseService>();
         services.AddTransient<IStorageService, StorageService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IFriendRequestService, FriendRequestService>();
         return services;
     }
 }

@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CommonService, UserService } from '@app-shared/services';
 import {
+  getMe,
+  getMeFailed,
+  getMeSuccess,
   signIn,
   signInFailed,
   signInSuccess,
+  signOut,
 } from '@app-shared/store/user/user.actions';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
-import { authConst } from '@app-core/constants/auth.const';
+import { authConst } from '@app-core/constants';
 
 @Injectable()
 export class UserEffects {
@@ -45,5 +49,31 @@ export class UserEffects {
         }),
       ),
     { dispatch: false },
+  );
+
+  signOut$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(signOut),
+        tap(() => {
+          localStorage.removeItem(authConst.USER_DATA);
+          localStorage.removeItem(authConst.ACCESS_TOKEN);
+          localStorage.removeItem(authConst.REFRESH_TOKEN);
+          this.commonService.redirectToLoginPage();
+        }),
+      ),
+    { dispatch: false },
+  );
+
+  getMe$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getMe),
+      switchMap(() =>
+        this.userService.getMe().pipe(
+          map((res) => getMeSuccess({ response: res })),
+          catchError((err) => of(getMeFailed())),
+        ),
+      ),
+    ),
   );
 }

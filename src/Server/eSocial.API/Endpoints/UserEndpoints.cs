@@ -15,6 +15,7 @@ public class UserEndpoints : IEndpoint
 
         group.MapPost("/sign-in", (SignInCommand command, IMediator mediator) => mediator.Send(command));
         
-        group.MapGet("/me", (IMediator mediator) => mediator.Send(new GetMeQuery()));
+        group.MapGet("/me", (IMediator mediator) => mediator.Send(new GetMeQuery()))
+             .RequireAuthorization();
     }
 }

@@ -47,8 +47,8 @@ public class UserService(IHttpContextAccessor httpContextAccessor, IMongoContext
         };
 
         return JWTBearerProvider.GenerateAccessToken(
-            appSettings.JwtConfig.TokenSingingKey,
+            appSettings.JWTConfig.TokenSingingKey,
             claims,
-            DateTime.Now.AddMinutes(appSettings.JwtConfig.AccessTokenDurationInMinutes));
+            DateTime.Now.AddMinutes(appSettings.JWTConfig.AccessTokenDurationInMinutes));
     }
 }

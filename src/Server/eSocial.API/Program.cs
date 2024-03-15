@@ -11,7 +11,7 @@ builder.SetupSerilog();
 
 var services = builder.Services;
 services.AddCors();
-services.AddJWTBearerAuth(appSettings.JwtConfig);
+services.AddJWTBearerAuth(appSettings.JWTConfig);
 services.AddAuthorization();
 services.AddEndpointDefinitions<Program>();
 services.AddSwaggerDocument();

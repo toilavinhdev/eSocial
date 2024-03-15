@@ -12,6 +12,7 @@ const SIGN_IN_FAILED = '[User] Sign In Failed';
 const SIGN_UP = '[User] Sign Up';
 const SIGN_UP_SUCCESS = '[User] Sign Up Success';
 const SIGN_UP_FAILED = '[User] Sign Up Failed';
+const SIGN_OUT = '[User] Sign Out';
 const GET_ME = '[User] Get Me';
 const GET_ME_SUCCESS = '[User] Get Me Success';
 const GET_ME_FAILED = '[User] Get Me Failed';
@@ -38,6 +39,9 @@ export const signUp = createAction(
 export const signUpSuccess = createAction(SIGN_UP_SUCCESS);
 
 export const signUpFailed = createAction(SIGN_UP_FAILED);
+
+/** Sign Out **/
+export const signOut = createAction(SIGN_OUT);
 
 /** Get Me **/
 export const getMe = createAction(GET_ME);

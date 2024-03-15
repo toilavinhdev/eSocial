@@ -12,5 +12,5 @@ public class AppSettings
 
     public MongoConfig MongoConfig { get; set; } = default!;
     
-    public JwtConfig JwtConfig { get; set; } = default!;
+    public JWTConfig JWTConfig { get; set; } = default!;
 }

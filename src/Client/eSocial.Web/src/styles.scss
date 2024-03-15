@@ -8,6 +8,11 @@
 /* Font Family */
 @import url(assets/fonts/font-inter.css);
 
+:root {
+  --primary: #27AE60;
+  --gray: #00000073;
+}
+
 * {
   font-family: "Inter", Roboto, sans-serif;
 }
