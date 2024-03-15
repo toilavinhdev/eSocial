@@ -1,8 +1,10 @@
+using eSocial.API.Handlers;
 using eSocial.Application;
 using eSocial.Infrastructure;
 using eSocial.Shared.Extensions;
 using eSocial.Shared.Mediator;
 using eSocial.Shared.Security;
+using eSocial.Shared.WebSockets;
 using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +27,7 @@ services.AddMediatR(
 services.AddValidatorsFromAssembly(AssemblyReference.Assembly);
 services.AddAutoMapper(AssemblyReference.Assembly);
 services.AddServiceCollections();
+services.AddWebSocketHandlers<Program>();
 
 var app = builder.Build();
 app.UseDefaultExceptionHandler();
@@ -35,7 +38,9 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UsePhysicalStaticFiles(appSettings.StaticFileConfig);
 app.MapEndpointDefinitions();
-
+app.UseWebSockets();
+app.MapWebSocketHandler<MessageWebSocketHandler>("/ws");
+    
 app.MapGet("Ping", () => "Pong");
 
 app.Run();

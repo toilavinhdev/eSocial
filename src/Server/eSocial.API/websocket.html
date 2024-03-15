@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+<h1>WebSocket Client</h1>
+<p>Status: <span id="status">READY TO CONNECT</span></p>
+<p>ConnectionId: <span id="userId">N/A</span></p>
+<div>
+    <label for="url">WebSocket Server URL:</label>
+    <input id="url">
+    <button id="btn-connect">Connect</button>
+    <button id="btn-disconnect" disabled>Disconnect</button>
+</div>
+<br><hr><br>
+<div>
+    <label for="receiver-name">Receiver Name:</label>
+    <input id="receiver-name" disabled>
+    <label for="message">Message: </label>
+    <input id="message" disabled>
+    <button id="btn-send" disabled>Send</button>
+</div>
+<br>
+<h2>History Log</h2>
+<table>
+    <thead>
+    <tr>
+        <td>From</td>
+        <td>To</td>
+        <td>Data</td>
+    </tr>
+    </thead>
+    <tbody id="logs">
+
+    </tbody>
+</table>
+</body>
+<style>
+    table, th, td {
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    td {
+        width: 33.33%;
+        padding: 12px
+    }
+</style>
+<script>
+    let status = document.getElementById("status")
+    let userId = document.getElementById("userId")
+    let url = document.getElementById("url")
+    let btnConnect = document.getElementById("btn-connect")
+    let btnDisconnect = document.getElementById("btn-disconnect")
+    let receiverName = document.getElementById("receiver-name")
+    let message = document.getElementById("message")
+    let btnSend = document.getElementById("btn-send")
+    let logs = document.getElementById("logs")
+
+    url.value = "ws://localhost:5043/ws"
+
+    btnConnect.onclick = function () {
+        status.innerText = "Connecting..."
+
+        socket = new WebSocket(url.value)
+
+        socket.onopen = function (event) {
+            loadState()
+            console.log("ON OPEN", event)
+        }
+        socket.onclose = function (event) {
+            loadState()
+            console.log("ON CLOSE", event)
+        }
+        socket.onerror = function (event) {
+            loadState()
+            console.log("ON ERROR", event)
+        }
+        socket.onmessage = function (event) {
+            console.log("ON SERVER MESSAGE", event)
+
+            if (userId.innerText === 'N/A') {
+                userId.innerText = event.data;
+                loadState()
+            }
+            else {
+                let data = JSON.parse(event.data)
+                loadState()
+                logs.innerHTML +=
+                    '<tr>' +
+                    '<td>' + data['from'] +'</td>' +
+                    '<td>' + data['to'] +'</td>' +
+                    '<td>' + data['message'] + '</td>' +
+                    '</tr>'
+            }
+        }
+    }
+
+    btnDisconnect.onclick = function () {
+        if(!isConnecting()) {
+            alert("Socket Not Connected!")
+            return;
+        }
+        socket.close(1000, "Closed From Client!")
+    }
+
+    btnSend.onclick = function () {
+        if(!isConnecting()) {
+            alert("Socket Not Connected!")
+            return;
+        }
+        if (!userId.innerText || !receiverName.value || !message.value){
+            alert("Message information is required!")
+            return;
+        }
+        let data = JSON.stringify({
+            "from": userId.innerText,
+            "to": receiverName.value,
+            "message": message.value
+        })
+        socket.send(data)
+    }
+
+    function isConnecting() {
+        return socket && socket.readyState === WebSocket.OPEN
+    }
+
+    function loadState() {
+        const enable = () => {
+            receiverName.disabled = false;
+            message.disabled = false;
+            btnSend.disabled = false;
+            btnDisconnect.disabled = false;
+        }
+
+        const disable = () => {
+            receiverName.disabled = true;
+            message.disabled = true;
+            btnSend.disabled = true;
+            btnDisconnect.disabled = true;
+        }
+
+        url.disabled = true
+        btnConnect.disabled = true
+
+        if (!socket) {
+            disable()
+        }
+        else {
+            switch (socket.readyState) {
+                case WebSocket.CONNECTING:
+                    status.innerText = "CONNECTING..."
+                    disable()
+                    break
+                case WebSocket.OPEN:
+                    status.innerText = "OPEN"
+                    enable()
+                    break
+                case WebSocket.CLOSING:
+                    status.innerText = "CLOSING..."
+                    disable()
+                    break
+                case WebSocket.CLOSED:
+                    status.innerText = "CLOSED"
+                    userId.innerText = "N/A"
+                    disable()
+                    url.disabled = false
+                    btnConnect.disabled = false
+                    break
+                default:
+                    status.innerText = "UNKNOWN STATE: " + socket.readyState
+                    disable()
+                    break
+            }
+        }
+    }
+</script>
+
+</html>
