@@ -15,6 +15,7 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IStorageService, StorageService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IFriendRequestService, FriendRequestService>();
+        services.AddScoped<IMessageService, MessageService>();
         return services;
     }
 }

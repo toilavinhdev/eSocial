@@ -1,6 +1,6 @@
 ﻿using eSocial.Shared.ValueObjects;
 
-namespace eSocial.Domain.UserAggregate;
+namespace eSocial.Domain.FriendRequestAggregate;
 
 public class FriendRequest : TrackingDocument
 {

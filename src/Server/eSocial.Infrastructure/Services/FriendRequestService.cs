@@ -1,4 +1,5 @@
 ﻿using eSocial.Application.Contracts;
+using eSocial.Domain.FriendRequestAggregate;
 using eSocial.Domain.UserAggregate;
 using eSocial.Shared.Exceptions;
 using eSocial.Shared.Mongo;
@@ -20,6 +21,15 @@ public class FriendRequestService(IHttpContextAccessor httpContextAccessor,
     
     public async Task<FriendRequest> CreateAsync(FriendRequest friendRequest)
     {
+        var builder = Builders<FriendRequest>.Filter;
+        var filter = builder.Or(
+            builder.Eq(x => x.FromUserId, friendRequest.FromUserId), 
+            builder.Eq(x => x.ToUserId, friendRequest.ToUserId));
+
+        var checkUsers = await context.Collection<FriendRequest>().Find(filter).CountDocumentsAsync();
+
+        if (checkUsers != 2) throw new InvalidDataException("User friend invalid data");
+        
         friendRequest.MarkCreated(GetUserClaimValue()?.Id);
         await context.Collection<FriendRequest>().InsertOneAsync(friendRequest);
         return friendRequest;

@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using eSocial.Application.Contracts;
+using eSocial.Domain.FriendRequestAggregate;
 using eSocial.Domain.UserAggregate;
 using eSocial.Shared.Mediator;
 using eSocial.Shared.ValueObjects;
 using FluentValidation;
 
-namespace eSocial.Application.Features.FeatureUser.Commands;
+namespace eSocial.Application.Features.FeatureFriendRequest.Commands;
 
 public class CreateFriendRequestCommand : IAPIRequest
 {

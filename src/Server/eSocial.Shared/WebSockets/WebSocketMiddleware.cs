@@ -16,11 +16,11 @@ public class WebSocketMiddleware(RequestDelegate next, WebSocketHandler webSocke
         }
 
         var socket = await context.WebSockets.AcceptWebSocketAsync();
-        var socketId = context.Request.Query["id"].ToString();
+        var socketId = context.Request.Query["userId"].ToString();
         if (string.IsNullOrEmpty(socketId)) socketId = Guid.NewGuid().ToString();
         await webSocketHandler.OnConnected(socketId, socket);
         
-        await Receive(socket, HandleMessage);
+        await ServerReceive(socket, HandleMessage);
         return;
 
         async void HandleMessage(WebSocketReceiveResult result, byte[] buffer)
@@ -28,7 +28,14 @@ public class WebSocketMiddleware(RequestDelegate next, WebSocketHandler webSocke
             switch (result.MessageType)
             {
                 case WebSocketMessageType.Text:
-                    await webSocketHandler.ReceiveAsync(socket, result, buffer);
+                    try
+                    {
+                        await webSocketHandler.ReceiveAsync(socket, result, buffer);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError($"Websocket encountered an exception: [{ex.GetType()}] [{ex.Message}] [{ex.Source}] [{ex.StackTrace}]");
+                    }
                     break;
                 case WebSocketMessageType.Close:
                     await webSocketHandler.OnDisconnected(socketId, result);
@@ -41,7 +48,7 @@ public class WebSocketMiddleware(RequestDelegate next, WebSocketHandler webSocke
         }
     }
 
-    private static async Task Receive(WebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage)
+    private static async Task ServerReceive(WebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage)
     {
         var buffer = new byte[1024 * 4];
         

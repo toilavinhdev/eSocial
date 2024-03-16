@@ -8,13 +8,29 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'chat',
-        pathMatch: 'full',
+        loadChildren: () =>
+          import('@app-features/feature-newsfeed/feature-newsfeed.routes').then(
+            (r) => r.routes,
+          ),
       },
       {
         path: 'chat',
         loadChildren: () =>
           import('@app-features/feature-chat/feature-chat.routes').then(
+            (r) => r.routes,
+          ),
+      },
+      {
+        path: 'friends',
+        loadChildren: () =>
+          import('@app-features/feature-friends/feature-friends.routes').then(
+            (r) => r.routes,
+          ),
+      },
+      {
+        path: 'profile/:id',
+        loadChildren: () =>
+          import('@app-features/feature-profile/feature-profile.routes').then(
             (r) => r.routes,
           ),
       },

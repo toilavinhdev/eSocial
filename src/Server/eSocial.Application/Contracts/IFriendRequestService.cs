@@ -1,4 +1,5 @@
-﻿using eSocial.Domain.UserAggregate;
+﻿using eSocial.Domain.FriendRequestAggregate;
+using eSocial.Domain.UserAggregate;
 using eSocial.Shared.Services;
 
 namespace eSocial.Application.Contracts;

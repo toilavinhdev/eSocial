@@ -44,7 +44,7 @@ public abstract class WebSocketHandler(WebSocketConnectionManager webSocketConne
         }
     }
     
-    private static async Task SendMessageAsync(WebSocket socket, string message)
+    public static async Task SendMessageAsync(WebSocket socket, string message)
     {
         if (socket.State != WebSocketState.Open) return;
 

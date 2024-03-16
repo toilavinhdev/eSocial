@@ -1,12 +1,29 @@
-<div class="w-full h-screen bg-[#FAFAFA] flex flex-col items-center">
-  <nz-avatar [nzSize]="32" [nzSrc]="(user$ | async)?.avatarUrl ?? commonConst.defaultAvatarPath"></nz-avatar>
+<div class="w-full h-screen bg-[#f9f9f9] flex flex-col items-center px-3">
+  <nz-avatar [nzSize]="36"
+             [nzSrc]="(user$ | async)?.avatarUrl ?? commonConst.defaultAvatarPath"
+             routerLink="/profile/{{ (user$ | async)?.id }}"
+             class="mt-3 cursor-pointer"></nz-avatar>
 
-  <div class="flex flex-col items-center gap-y-1 *:text-[22px]">
-    <a routerLink="/chat"><i class="fa-light fa-comment-lines"></i></a>
+  <div class="w-full h-px border-t border-t-[#87878773] my-5"></div>
+
+  <div class="flex flex-col items-center gap-y-1
+              *:cursor-pointer *:flex *:justify-center *:items-center *:h-[40px] *:w-[40px] *:text-[18px] *:rounded-[30%]">
+    <div routerLink="/"
+         routerLinkActive="bg-primary"
+         [routerLinkActiveOptions]="{exact: true}"><i class="fa-light fa-house"></i></div>
+    <div routerLink="/chat"
+         routerLinkActive="bg-primary"
+         [routerLinkActiveOptions]="{exact: true}"><i class="fa-light fa-comment-lines"></i></div>
+    <div routerLink="/friends"
+         routerLinkActive="bg-primary"
+         [routerLinkActiveOptions]="{exact: true}"><i class="fa-light fa-user-group"></i></div>
   </div>
 
-  <div class="flex flex-col items-center gap-y-1 mt-auto *:text-[22px]">
-    <a routerLink="/setting"><i class="fa-light fa-gear"></i></a>
+  <div class="flex flex-col items-center gap-y-1 mt-auto mb-2
+              *:cursor-pointer *:flex *:justify-center *:items-center *:h-[40px] *:w-[40px] *:text-[18px] *:rounded-[30%]">
+    <div routerLink="/setting"
+         routerLinkActive="bg-primary"
+         [routerLinkActiveOptions]="{exact: true}"><i class="fa-light fa-gear"></i></div>
     <div (click)="onSignOut()"><i class="fa-light fa-arrow-right-from-bracket"></i></div>
   </div>
 </div>

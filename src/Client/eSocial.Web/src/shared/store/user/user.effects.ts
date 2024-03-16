@@ -68,12 +68,14 @@ export class UserEffects {
   getMe$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getMe),
+      tap(() => this.commonService.showLoading()),
       switchMap(() =>
         this.userService.getMe().pipe(
           map((res) => getMeSuccess({ response: res })),
           catchError((err) => of(getMeFailed())),
         ),
       ),
+      tap(() => this.commonService.hideLoading()),
     ),
   );
 }

@@ -1,4 +1,4 @@
-using eSocial.API.Handlers;
+using eSocial.API.WebSockets;
 using eSocial.Application;
 using eSocial.Infrastructure;
 using eSocial.Shared.Extensions;
@@ -39,7 +39,8 @@ app.UseHttpsRedirection();
 app.UsePhysicalStaticFiles(appSettings.StaticFileConfig);
 app.MapEndpointDefinitions();
 app.UseWebSockets();
-app.MapWebSocketHandler<MessageWebSocketHandler>("/ws");
+app.MapWebSocketHandler<NotificationWebSocketHandler>("/ws");
+app.MapWebSocketHandler<ChatWebSocketHandler>("/chat");
     
 app.MapGet("Ping", () => "Pong");
 

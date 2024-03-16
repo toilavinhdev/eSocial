@@ -9,7 +9,7 @@ public static class WebSocketExtensions
 {
     public static IServiceCollection AddWebSocketHandlers<TAssembly>(this IServiceCollection services)
     {
-        services.AddTransient<WebSocketConnectionManager>();
+        services.AddSingleton<WebSocketConnectionManager>();
         
         var exportedType = typeof(TAssembly).Assembly.ExportedTypes;
         exportedType = exportedType.Where(x => x.GetTypeInfo().BaseType == typeof(WebSocketHandler));

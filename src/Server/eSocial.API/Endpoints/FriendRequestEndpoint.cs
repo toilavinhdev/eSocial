@@ -1,4 +1,5 @@
-﻿using eSocial.Application.Features.FeatureUser.Commands;
+﻿using eSocial.Application.Features.FeatureFriendRequest.Commands;
+using eSocial.Application.Features.FeatureUser.Commands;
 using eSocial.Shared.ValueObjects;
 using MediatR;
 
